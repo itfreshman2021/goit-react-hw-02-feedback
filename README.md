@@ -1,3 +1,15 @@
+React Homework №2, task № 1  goit-react-hw-02-feedback 
+
+https://itfreshman2021.github.io/goit-react-hw-02-feedback/
+
+
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

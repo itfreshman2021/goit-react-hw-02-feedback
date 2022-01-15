@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Section from './Components/feedback/Section';
 import FeedbackOptions from './Components/feedback/FeedbackOptions';
 import Statistics from './Components/feedback/Statistics';
+import Notification from './Components/feedback/Notification';
 
 class App extends React.Component {
   state = {
@@ -25,8 +26,8 @@ class App extends React.Component {
 
   countPositiveFeedbackPercentage = () => {
     let countPositiveFeedback = 0;
-    const { good, neutral, bad } = this.state;
-    countPositiveFeedback = (good / (good + neutral + bad)) * 100;
+    const { good } = this.state;
+    countPositiveFeedback = (good / this.countTotalFeedback()) * 100;
     if (!isFinite(countPositiveFeedback)) {
       return 0;
     }
@@ -42,15 +43,21 @@ class App extends React.Component {
         <Section title="Please leave feedback">
           <FeedbackOptions options={Object.keys(state)} onLeaveFeedback={handleAddVoute} />
         </Section>
-        <Section title="Statistics">
-          <Statistics
-            good={good}
-            neutral={neutral}
-            bad={bad}
-            total={countTotalFeedback()}
-            positivePercentage={countPositiveFeedbackPercentage()}
-          />
-        </Section>
+        {countTotalFeedback() > 0 ? (
+          <Section title="Statistics">
+            <Statistics
+              good={good}
+              neutral={neutral}
+              bad={bad}
+              total={countTotalFeedback()}
+              positivePercentage={countPositiveFeedbackPercentage()}
+            />
+          </Section>
+        ) : (
+          <Section title="Statistics">
+            <Notification message="No feedback given" />
+          </Section>
+        )}
       </>
     );
   }
@@ -67,5 +74,6 @@ Statistics.propTypes = {
   total: PropTypes.number.isRequired,
   positivePercentage: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
 };
+Notification.propTypes = { message: PropTypes.string.isRequired };
 
 export default App;

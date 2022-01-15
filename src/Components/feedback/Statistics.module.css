@@ -1,0 +1,11 @@
+.StatisticsItem {
+  margin-bottom: 5px;
+  margin-top: 5px;
+
+  font-weight: bold;
+}
+
+.StatisticCount {
+  margin-left: 5px;
+  font-size: 19px;
+}

@@ -1,9 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import Section from './Components/feedback/Section';
-import FeedbackOptions from './Components/feedback/FeedbackOptions';
-import Statistics from './Components/feedback/Statistics';
-import Notification from './Components/feedback/Notification';
+import Section from './section/Section';
+import FeedbackOptions from './feedback/FeedbackOptions';
+import Statistics from './statistics/Statistics';
+import Notification from './notification/Notification';
 
 class App extends React.Component {
   state = {
@@ -62,18 +61,5 @@ class App extends React.Component {
     );
   }
 }
-Section.propTypes = { title: PropTypes.string.isRequired };
-FeedbackOptions.propTypes = {
-  options: PropTypes.array.isRequired,
-  onLeaveFeedback: PropTypes.func.isRequired,
-};
-Statistics.propTypes = {
-  good: PropTypes.number.isRequired,
-  neutral: PropTypes.number.isRequired,
-  bad: PropTypes.number.isRequired,
-  total: PropTypes.number.isRequired,
-  positivePercentage: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-};
-Notification.propTypes = { message: PropTypes.string.isRequired };
 
 export default App;
